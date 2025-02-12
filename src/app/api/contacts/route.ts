@@ -95,6 +95,25 @@ contactsAPI.get('/', async (c) => {
   }
 });
 
+contactsAPI.get('/:id', async (c) => {
+    try {
+      const db = c.env.DB as D1Database; // Access D1 database
+      const contactId = c.req.param('id'); // Get the contact ID from the URL parameter
+  
+      // Fetch the contact by ID from the database
+      const result = await db.prepare("SELECT * FROM contacts WHERE id = ?").bind(contactId).first();
+  
+      if (!result) {
+        return c.json({ error: 'No contact found with this ID.' }, 404); // If no contact is found
+      }
+  
+      return c.json({ contact: result }); // Return the contact if found
+    } catch (error) {
+      console.error(error);  // Log the error for debugging
+      return c.json({ error: error.toString() }, 500); // Return error response
+    }
+  });
+
 // Update Contact (PUT /api/contacts/:id)
 contactsAPI.put('/:id', async (c) => {
   try {
