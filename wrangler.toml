@@ -1,0 +1,19 @@
+name = "contact-app-newbac"
+main = "src/index.ts"
+compatibility_date = "2025-02-12"
+
+
+[[kv_namespaces]]
+binding = "CONTACT_CACHE_NEW"
+id = "f694eb2990a44c30bfd15c4145323213" 
+
+[[d1_databases]]
+binding = "DB"
+database_name = "contacts_db_new"
+database_id = "133bf79c-a632-4135-9b76-6823739c04b8"
+
+# R2 Bucket binding (Cloudflare R2)
+[[r2_buckets]]
+binding = "R2_BUCKET"          # Variable name in Worker
+bucket_name = "pictures"         # Name of the R2 bucket
+preview_bucket_name = "pictures" # Preview bucket (optional)
